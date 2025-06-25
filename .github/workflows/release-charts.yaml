@@ -87,4 +87,4 @@ jobs:
           REPO_NAME=${GITHUB_REPOSITORY##*/}
           PACKAGE_URI="https://dl.cloudsmith.io/basic/$GITHUB_REPOSITORY/helm/charts/${{ steps.package-chart.outputs.version }}"
           echo "Updating latest Helm Chart package: $PACKAGE_URI"
-          gh secret set NGINX_HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
+          gh secret set ${REPO_NAME}_HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
