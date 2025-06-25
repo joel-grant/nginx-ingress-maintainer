@@ -1,5 +1,5 @@
 apiVersion: v2
-name: Ingress and TLS Maintainer
+name: nginx-ingress-maintainer
 description: A Helm Chart that facilitates the the creation of an Nginx Load Balancer and process of enabling TLS for a given domain.
 type: application
 version: 0.1.0
