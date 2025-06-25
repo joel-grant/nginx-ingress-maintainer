@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.application }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/issuer: letsencrypt-nginx
+    {{- if .Values.ingress.whitelist.enabled }}
+    nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.ingress.whitelist.whitelistSourceRange }}
+    {{- end }}
+spec:
+  tls:
+   - hosts:
+     - {{ .Values.ingress.domain.name }}
+     secretName: letsencrypt-nginx-{{ .Values.application }}-app
+  rules:
+  - host: {{ .Values.ingress.domain.name }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: {{ .Values.ingress.domain.targetService }}
+            port:
+              number: 80
+
+
