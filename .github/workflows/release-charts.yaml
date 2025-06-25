@@ -52,6 +52,7 @@ jobs:
           echo $OUTPUT
           REPO_NAME=${GITHUB_REPOSITORY##*/}
           delimeter="$REPO_NAME -"
+          echo "debug $delimeter"
           num=$(echo $OUTPUT | grep -b -o $delimeter )
           echo $num
           index=${num:0:2}
