@@ -56,7 +56,7 @@ jobs:
           result=$(echo $OUTPUT | grep -b -o $delimeter )
           echo $result
           delimiter=":"
-          index="${num%%$delimiter*}"
+          index="${result%%$delimiter*}"
           echo $index
           VERSION=${OUTPUT:$index}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
