@@ -51,7 +51,7 @@ jobs:
           OUTPUT=$(helm package .)
           echo $OUTPUT
           REPO_NAME=${GITHUB_REPOSITORY##*/}
-          delimeter="$REPO_NAME -"
+          delimeter="$REPO_NAME-"
           echo "debug $delimeter"
           num=$(echo $OUTPUT | grep -b -o $delimeter )
           echo $num
