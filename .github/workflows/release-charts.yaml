@@ -63,7 +63,7 @@ jobs:
         id: prepare-push
         run: |
           REPO_NAME=${GITHUB_REPOSITORY##*/}
-
+          echo "REPO_NAME"
           VERSION="${{ steps.package-chart.outputs.version }}"
           echo $VERSION
 
