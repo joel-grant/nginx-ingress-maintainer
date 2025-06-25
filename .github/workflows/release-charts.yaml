@@ -53,9 +53,10 @@ jobs:
           REPO_NAME=${GITHUB_REPOSITORY##*/}
           delimeter="$REPO_NAME-"
           echo "debug $delimeter"
-          num=$(echo $OUTPUT | grep -b -o $delimeter )
-          echo $num
-          index=${num:0:2}
+          result=$(echo $OUTPUT | grep -b -o $delimeter )
+          echo $result
+          delimiter=":"
+          index="${num%%$delimiter*}"
           echo $index
           VERSION=${OUTPUT:$index}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
