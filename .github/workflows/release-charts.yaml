@@ -78,7 +78,7 @@ jobs:
           pip install --user cloudsmith-cli
           
           # publish chart using the cloudsmith CLI
-          cloudsmith push helm $GITHUB_REPOSITORY /home/runner/work/$REPO_NAME/$REPO_NAME/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
+          cloudsmith push helm plant-coach/$REPO_NAME /home/runner/work/$REPO_NAME/$REPO_NAME/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
 
       - name: Save Helm Chart to GitHub Secrets
         env:
