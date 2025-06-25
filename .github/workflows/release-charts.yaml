@@ -52,7 +52,7 @@ jobs:
           echo $OUTPUT
           REPO_NAME=${GITHUB_REPOSITORY##*/}
           echo $REPO_NAME
-          num=$(echo $OUTPUT | grep -b -o $REPO_NAME"-")
+          num=$(echo $OUTPUT | grep -b -o $REPO_NAME )
           echo $num
           index=${num:0:2}
           echo $index
