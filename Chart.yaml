@@ -1,0 +1,10 @@
+apiVersion: v2
+name: Ingress and TLS Maintainer
+description: A Helm Chart that facilitates the the creation of an Nginx Load Balancer and process of enabling TLS for a given domain.
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies:
+- name: ingress-nginx
+  version: "4.12.3"
+  repository: "https://kubernetes.github.io/ingress-nginx"

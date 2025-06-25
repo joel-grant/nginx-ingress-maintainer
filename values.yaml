@@ -1,0 +1,16 @@
+issuer:
+  name: letsencrypt-nginx
+  email: ""
+
+namespace: default
+
+application: ""
+
+
+ingress:
+  whitelist:
+    enabled: false
+    whitelistSourceRange: ""
+  domain:
+    name: ""
+    targetService: ""
