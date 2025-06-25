@@ -46,38 +46,39 @@ jobs:
       - name: Package Chart
         id: package-chart
         run: |
+          echo "[INFO] Packaging Helm Chart"
           echo $(pwd)
           echo $(ls -l)
           OUTPUT=$(helm package .)
           echo $OUTPUT
+
+          echo "[INFO] Extracting version from Helm Chart package output."
           REPO_NAME=${GITHUB_REPOSITORY##*/}
-          delimeter="$REPO_NAME-"
-          echo "debug $delimeter"
-          result=$(echo $OUTPUT | grep -b -o $delimeter )
+          identifier="$REPO_NAME-"
+          result=$(echo $OUTPUT | grep -b -o $identifier )
           echo $result
           delimiter=":"
           index="${result%%$delimiter*}"
           echo $index
           VERSION=${OUTPUT:$index}
+          echo "Extracted version: $VERSION"
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           
       - name: Prepare to Push
         id: prepare-push
         run: |
           REPO_NAME=${GITHUB_REPOSITORY##*/}
-          echo "$REPO_NAME"
-          echo ${GITHUB_REPOSITORY}
           VERSION="${{ steps.package-chart.outputs.version }}"
-          echo $VERSION
 
-          # install and initialise helm
+          echo "[INFO] Preparing Helm"
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
           helm init --client-only
 
-          # install the cloudsmith CLI
+          echo "[INFO] Preparing the Cloudsmith CLI"
           pip install --user cloudsmith-cli
           
-          # publish chart using the cloudsmith CLI
+          echo "[INFO] Pushing Helm Package ${{ steps.package-chart.outputs.version }} to Cloudsmith."
           cloudsmith push helm plant-coach/$REPO_NAME /home/runner/work/$REPO_NAME/$REPO_NAME/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
 
       - name: Save Helm Chart to GitHub Secrets
@@ -86,5 +87,7 @@ jobs:
         run: |
           REPO_NAME=${GITHUB_REPOSITORY##*/}
           PACKAGE_URI="https://dl.cloudsmith.io/basic/$GITHUB_REPOSITORY/helm/charts/${{ steps.package-chart.outputs.version }}"
-          echo "Updating latest Helm Chart package: $PACKAGE_URI"
+          echo "[INFO] Setting the GitHub Org secret to the latest Helm Chart package: $PACKAGE_URI"
           gh secret set NGINX_HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
+          
+          echo "[INFO] Done!"
