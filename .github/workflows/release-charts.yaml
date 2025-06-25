@@ -59,26 +59,29 @@ jobs:
           VERSION=${OUTPUT:$index}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           
-      # - name: Prepare to Push
-      #   id: prepare-push
-      #   run: |
-      #     VERSION="${{ steps.package-chart.outputs.version }}"
-      #     echo $VERSION
+      - name: Prepare to Push
+        id: prepare-push
+        run: |
+          REPO_NAME=${GITHUB_REPOSITORY##*/}
 
-      #     # install and initialise helm
-      #     curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
-      #     helm init --client-only
+          VERSION="${{ steps.package-chart.outputs.version }}"
+          echo $VERSION
 
-      #     # install the cloudsmith CLI
-      #     pip install --user cloudsmith-cli
+          # install and initialise helm
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | bash
+          helm init --client-only
+
+          # install the cloudsmith CLI
+          pip install --user cloudsmith-cli
           
-      #     # publish chart using the cloudsmith CLI
-      #     cloudsmith push helm plant-coach/plant-coach-helm /home/runner/work/plant-coach-helm/plant-coach-helm/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
+          # publish chart using the cloudsmith CLI
+          cloudsmith push helm $GITHUB_REPOSITORY /home/runner/work/$REPO_NAME/$REPO_NAME/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
 
-      # - name: Save Helm Chart to GitHub Secrets
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      #   run: |
-      #     PACKAGE_URI="https://dl.cloudsmith.io/basic/plant-coach/plant-coach-helm/helm/charts/${{ steps.package-chart.outputs.version }}"
-      #     echo "Updating latest Helm Chart package: $PACKAGE_URI"
-      #     gh secret set HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
+      - name: Save Helm Chart to GitHub Secrets
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          REPO_NAME=${GITHUB_REPOSITORY##*/}
+          PACKAGE_URI="https://dl.cloudsmith.io/basic/$GITHUB_REPOSITORY/helm/charts/${{ steps.package-chart.outputs.version }}"
+          echo "Updating latest Helm Chart package: $PACKAGE_URI"
+          gh secret set NGINX_HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
