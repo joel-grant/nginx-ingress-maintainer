@@ -1,15 +1,17 @@
+{{- range .Values.issuers }}
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ .Values.issuer.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ .name }}
+  namespace: {{ .namespace }}
 spec:
   acme:
-    email: {{ .Values.issuer.email }}
+    email: {{ .email }}
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: {{ .Values.issuer.name }}-private-key
+      name: {{ .name }}-private-key
     solvers:
       - http01:
           ingress:
             class: nginx
+{{- end }}

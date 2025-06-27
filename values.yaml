@@ -1,16 +1,14 @@
-issuer:
-  name: letsencrypt-nginx
-  email: ""
+ingresses:
+  - name: plant-coach
+    namespace: plant-coach-production
+    whitelist:
+      enabled: false
+      whitelistSourceRange: ""
+    domain:
+      name: "plantcoach.app"
+      targetService: plant-coach-fe
 
-namespace: default
-
-application: ""
-
-
-ingress:
-  whitelist:
-    enabled: false
-    whitelistSourceRange: ""
-  domain:
-    name: ""
-    targetService: ""
+issuers:
+  - name: letsencrypt-nginx
+    namespace: plant-coach-production
+    email: ""
