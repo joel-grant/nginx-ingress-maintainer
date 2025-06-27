@@ -11,4 +11,4 @@ ingresses:
 issuers:
   - name: letsencrypt-nginx
     namespace: plant-coach-production
-    email: ""
+    email: joelgrantdev@gmail.com
