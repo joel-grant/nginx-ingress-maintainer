@@ -77,17 +77,22 @@ jobs:
 
           echo "[INFO] Preparing the Cloudsmith CLI"
           pip install --user cloudsmith-cli
+
+          OWNER=${{ github.repository_owner }}
+          OWNER=${OWNER,,}
           
           echo "[INFO] Pushing Helm Package ${{ steps.package-chart.outputs.version }} to Cloudsmith."
-          cloudsmith push helm plant-coach/$REPO_NAME /home/runner/work/$REPO_NAME/$REPO_NAME/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
+          cloudsmith push helm $OWNER/$REPO_NAME /home/runner/work/$REPO_NAME/$REPO_NAME/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
 
       - name: Save Helm Chart to GitHub Secrets
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           REPO_NAME=${GITHUB_REPOSITORY##*/}
+          REPO_NAME="${REPO_NAME//-/_}"
+          REPO_NAME=${REPO_NAME^^}
           PACKAGE_URI="https://dl.cloudsmith.io/basic/$GITHUB_REPOSITORY/helm/charts/${{ steps.package-chart.outputs.version }}"
           echo "[INFO] Setting the GitHub Org secret to the latest Helm Chart package: $PACKAGE_URI"
-          gh secret set NGINX_HELM_CHART --org Plant-Coach --visibility all --body "$PACKAGE_URI"
+          gh secret set "$REPO_NAME"_HELM_CHART --org ${{ github.repository_owner }} --visibility all --body "$PACKAGE_URI"
           
           echo "[INFO] Done!"
