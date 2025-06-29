@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.2.0...v0.2.1) (2025-06-29)
+
+
+### Bug Fixes
+
+* reset values ([c6556c0](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/c6556c0610ba1c97785e6412f45ee9dd4a34009f))
+
 ## [0.2.0](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.1.0...v0.2.0) (2025-06-29)
 
 
