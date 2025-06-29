@@ -2,7 +2,7 @@ issuer:
   name: letsencrypt-nginx
   email: ""
 
-namespace: default
+namespace: ""
 
 application: ""
 
