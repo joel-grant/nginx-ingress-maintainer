@@ -2,8 +2,8 @@
 on:
   workflow_run:
     workflows:
-      - "Terraform Plan"
-      - "Terraform Apply"
+      - "Lint and Test Charts"
+      - "Release Charts"
     branches:
       - main
     types:
