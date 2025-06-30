@@ -21,22 +21,22 @@ jobs:
           touch /home/runner/.kube/config
           echo "${{ secrets.KUBECONFIG }}" > /home/runner/.kube/config
       
-      - name: Create Docker Registry Secret
-        run: |
-          kubectl get secret ${{ secrets.SECRET_NAME }}
+      # - name: Create Docker Registry Secret
+      #   run: |
+      #     kubectl get secret ${{ secrets.SECRET_NAME }}
 
-          if [ $? -eq 0 ]; then
-            echo "Secret ${{ secrets.SECRET_NAME }} already exists."
-            echo "No action needed"
-          else
-            echo "Secret ${{ secrets.SECRET_NAME }} does not exist."
-            echo "Creating secret ${{ secrets.SECRET_NAME }}."
+      #     if [ $? -eq 0 ]; then
+      #       echo "Secret ${{ secrets.SECRET_NAME }} already exists."
+      #       echo "No action needed"
+      #     else
+      #       echo "Secret ${{ secrets.SECRET_NAME }} does not exist."
+      #       echo "Creating secret ${{ secrets.SECRET_NAME }}."
             
-            echo ${{ secrets.DOCKERHUB_CLUSTER_SECRET }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-            kubectl create secret generic ${{ secrets.SECRET_NAME }} \
-            --from-file=.dockerconfigjson=/home/runner/.docker/config.json \
-            --type=kubernetes.io/dockerconfigjson
-          fi
+      #       echo ${{ secrets.DOCKERHUB_CLUSTER_SECRET }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      #       kubectl create secret generic ${{ secrets.SECRET_NAME }} \
+      #       --from-file=.dockerconfigjson=/home/runner/.docker/config.json \
+      #       --type=kubernetes.io/dockerconfigjson
+      #     fi
 
       - name: Configure Git
         run: |
