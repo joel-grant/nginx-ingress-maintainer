@@ -18,7 +18,7 @@ spec:
   tls:
    - hosts:
      - {{ .Values.ingress.domain.name }}
-     secretName: letsencrypt-nginx-{{ Values.ingress.name }}-app
+     secretName: letsencrypt-nginx-{{ .Values.ingress.name }}-app
   rules:
   - host: {{ .Values.ingress.domain.name }}
     http:
