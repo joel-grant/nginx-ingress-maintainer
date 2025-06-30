@@ -8,10 +8,13 @@ metadata:
     app.kubernetes.io/part-of: nginx-ingress-maintainer
   annotations:
     cert-manager.io/issuer: letsencrypt-nginx
+    {{- if .Values.ingress.whitelist.enabled }}
+    nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.ingress.whitelistSourceRange }}
+    {{- end }}
 spec:
   # Ingress resources need to have the ingressClassName field set to 
   # the value of the class of the Ingress Controller the user wants to use.
-  ingressClassName: {{ .Values.ingress.name }}}-nginx
+  ingressClassName: {{ .Values.ingress.name }}-nginx
   tls:
    - hosts:
      - {{ .Values.ingress.domain.name }}
