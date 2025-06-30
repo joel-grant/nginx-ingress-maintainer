@@ -1,14 +1,19 @@
-ingresses:
-  - name: plant-coach
-    namespace: plant-coach-production
-    whitelist:
-      enabled: false
-      whitelistSourceRange: ""
-    domain:
-      name: "plantcoach.app"
-      targetService: plant-coach-fe
+ingress:
+  name: ""
+  namespace: ""
+  whitelist:
+    enabled: false
+    whitelistSourceRange: ""
+  domain:
+    name: ""
+    targetService: ""
 
-issuers:
-  - name: letsencrypt-nginx
-    namespace: plant-coach-production
-    email: joelgrantdev@gmail.com
+issuer:
+  name: letsencrypt-nginx
+  namespace: ""
+  email: ""
+
+ingress-nginx:
+  controller:
+    ingressClassResource:
+      name: ""
