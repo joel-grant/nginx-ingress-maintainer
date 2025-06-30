@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.3.0](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.2.1...v0.3.0) (2025-06-30)
+
+
+### Features
+
+* allow multiple nginx controllers per cluster ([c66cafa](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/c66cafad12dd4b026a161ca780617c3c7ea02220))
+* allow multiple nginx ingresses in same cluster ([f426ea0](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/f426ea0fb8a8d1b59d68e618a60932a874b6ac94))
+* allow multiple NGINX installations in different namespaces ([6a5f3bd](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/6a5f3bdf362b39f6d42025da9d977f24eb353e79))
+
+
+### Bug Fixes
+
+* add missing period ([9a3d29b](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/9a3d29ba3d4b8289f488deae1f9fe1a34e1c59f3))
+* conditional formatting ([8b0bcbb](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/8b0bcbb8a801c8635dd93ba73b24f2179eac402c))
+* missing secret name ([f4ff57d](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/f4ff57db9fd792c3f9af002ffd6ea320a45d8131))
+* remove extra curly brace ([60afc78](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/60afc78c91e1d962f13e77f661f470a7928ec9bc))
+* remove looping templates ([02033f8](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/02033f8de9c3884068a55f023ad212ac5ada4b3e))
+* remove old range loop ([c1558a8](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/c1558a86ce0421d7dcb897a8fafd2e4dc84a55bd))
+
 ## [0.2.1](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.2.0...v0.2.1) (2025-06-29)
 
 
