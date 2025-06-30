@@ -1,14 +1,19 @@
-ingresses:
-  - name: ""
-    namespace: ""
-    whitelist:
-      enabled: false
-      whitelistSourceRange: ""
-    domain:
-      name: ""
-      targetService: ""
+ingress:
+  name: ""
+  namespace: ""
+  whitelist:
+    enabled: false
+    whitelistSourceRange: ""
+  domain:
+    name: ""
+    targetService: ""
 
-issuers:
-  - name: letsencrypt-nginx
-    namespace: ""
-    email: ""
+issuer:
+  name: letsencrypt
+  namespace: ""
+  email: ""
+
+ingress-nginx:
+  controller:
+    ingressClassResource:
+      name: ""
