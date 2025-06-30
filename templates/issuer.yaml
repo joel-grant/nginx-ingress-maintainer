@@ -9,7 +9,7 @@ spec:
     email: {{ .Values.issuer.email }}
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: {{ .Values.issuer.name }}-private-key
+      name: "{{ .Values.issuer.name }}-{{ .Values.ingress.name }}-nginx-private-key"
     solvers:
       - http01:
           ingress:

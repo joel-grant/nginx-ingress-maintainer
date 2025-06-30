@@ -9,7 +9,7 @@ ingress:
     targetService: ""
 
 issuer:
-  name: letsencrypt-nginx
+  name: letsencrypt
   namespace: ""
   email: ""
 
