@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.3.0...v0.3.1) (2025-06-30)
+
+
+### Bug Fixes
+
+* uncomment secret creation ci job for now ([c229120](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/c22912063181d6b991b9c02e8fac54b9497f4a7b))
+* uncomment secret job for now ([faf4d13](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/faf4d1339cf57c99fb7169d26911fe7669c8e4c6))
+
 ## [0.3.0](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.2.1...v0.3.0) (2025-06-30)
 
 
