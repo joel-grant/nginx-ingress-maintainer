@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/part-of: nginx-ingress-maintainer
   annotations:
     cert-manager.io/issuer: {{ .Values.issuer.name }}
+    cert-manager.io/issue-temporary-certificate: "true"
     {{- if .Values.ingress.whitelist.enabled -}}
     nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.ingress.whitelistSourceRange }}
     {{- end }}
