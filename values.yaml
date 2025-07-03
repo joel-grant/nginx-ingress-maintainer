@@ -1,45 +1,42 @@
 ingress:
-  name: ""
-  namespace: ""
+  name: plant-coach
+  namespace: plant-coach-production
   whitelist:
     enabled: false
     whitelistSourceRange: ""
   domain:
-    name: ""
-    targetService: ""
+    name: plantcoach.app
+    targetService: plant-coach-fe
 
 issuer:
-  name: ""
-  namespace: ""
-  email: ""
-
+  name: letsencrypt-pcp
+  namespace: plant-coach-production
+  email: joelgrantdev@gmail.com
+  
 ingress-nginx:
   controller:
     ingressClassResource:
-      name: ""
-    controller:
-      ingressClassResource:
-        # This should match the format: "<app-name>-nginx"
-        name: joel-grant-dev-nginx
-      # A replica count of minimum 2 ensures high availability for Nginx Ingress main application Pods
-      replicaCount: 1
-      service:
-        type: LoadBalancer
-        annotations:
-            # Enable proxy protocol.
-            service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: true
-            # Specify whether the DigitalOcean Load Balancer should pass encrypted data to backend Droplets.
-            service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
-      config:
-        use-proxy-protocol: true
+      # This should match the format: "<app-name>-nginx"
+      name: plant-coach-nginx
+    # A replica count of minimum 2 ensures high availability for Nginx Ingress main application Pods
+    replicaCount: 1
+    service:
+      type: LoadBalancer
+      annotations:
+          # Enable proxy protocol.
+          service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: true
+          # Specify whether the DigitalOcean Load Balancer should pass encrypted data to backend Droplets.
+          service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
+    config:
+      use-proxy-protocol: true
 
-      ## Enable the metrics of the NGINX Ingress controller https://kubernetes.github.io/ingress-nginx/user-guide/monitoring/
-      metrics:
-        enabled: true
-        service:
-          servicePort: "9090"
-      podAnnotations:
-        prometheus.io/port: "10254"
-        prometheus.io/scrape: "true"
+    ## Enable the metrics of the NGINX Ingress controller https://kubernetes.github.io/ingress-nginx/user-guide/monitoring/
+    metrics:
+      enabled: true
+      service:
+        servicePort: "9090"
+    podAnnotations:
+      prometheus.io/port: "10254"
+      prometheus.io/scrape: "true"
 
 doAccessToken: ""
