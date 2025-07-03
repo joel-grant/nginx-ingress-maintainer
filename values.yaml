@@ -1,25 +1,25 @@
 doAccessToken: ""
 
 ingress:
-  name: plant-coach
-  namespace: plant-coach-production
+  name: ""
+  namespace: ""
   whitelist:
     enabled: false
     whitelistSourceRange: ""
   domain:
-    name: plantcoach.app
-    targetService: plant-coach-fe
+    name: ""
+    targetService: ""
 
 issuer:
-  name: letsencrypt-pcp
-  namespace: plant-coach-production
+  name: ""
+  namespace: ""
   email: joelgrantdev@gmail.com
   
 ingress-nginx:
   controller:
     ingressClassResource:
       # This should match the format: "<app-name>-nginx"
-      name: plant-coach-nginx
+      name: ""
     # A replica count of minimum 2 ensures high availability for Nginx Ingress main application Pods
     replicaCount: 1
     service:
