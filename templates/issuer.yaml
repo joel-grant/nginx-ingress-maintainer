@@ -11,10 +11,10 @@ spec:
     privateKeySecretRef:
       name: "{{ .Values.issuer.name }}-{{ .Values.ingress.name }}-nginx-private-key"
     solvers:
-      - dns01:
-        ingress:
-          class: {{ .Values.ingress.name }}-nginx
-        digitalocean:
-          tokenSecretRef:
-            name: digitalocean-dns
-            key: access-token
+    - dns01:
+      ingress:
+        class: {{ .Values.ingress.name }}-nginx
+      digitalocean:
+        tokenSecretRef:
+          name: digitalocean-dns
+          key: access-token
