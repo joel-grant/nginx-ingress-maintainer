@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v1.0.0...v1.1.0) (2025-07-03)
+
+
+### Features
+
+* consolidate nginx config into this repo ([#18](https://github.com/Plant-Coach/nginx-ingress-maintainer/issues/18)) ([3f868e2](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/3f868e21fd2b803d0765def28e0ca3b8a58f250c))
+
 ## [1.0.0](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.3.1...v1.0.0) (2025-07-03)
 
 
