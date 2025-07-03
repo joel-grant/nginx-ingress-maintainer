@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v1.1.0...v1.1.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* bump version again ([#22](https://github.com/Plant-Coach/nginx-ingress-maintainer/issues/22)) ([72891c2](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/72891c2aed971f552e4255c49e54cff99c2fe723))
+* move secret config to parent repo ([3e43ef5](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/3e43ef5974eb831f831ecbe442bd3e94fd3879ac))
+
 ## [1.1.0](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v1.0.0...v1.1.0) (2025-07-03)
 
 
