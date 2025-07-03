@@ -17,3 +17,5 @@ ingress-nginx:
   controller:
     ingressClassResource:
       name: ""
+
+doAccessToken: ""
