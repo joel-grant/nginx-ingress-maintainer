@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.3.1...v1.0.0) (2025-07-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* add capability of validating multiple certificates within the cluster
+
+### Features
+
+* add capability of validating multiple certificates within the cluster ([193739c](https://github.com/Plant-Coach/nginx-ingress-maintainer/commit/193739c3d1ac61a7466bad46cc6adc2ffe1f4a84))
+
 ## [0.3.1](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v0.3.0...v0.3.1) (2025-06-30)
 
 
