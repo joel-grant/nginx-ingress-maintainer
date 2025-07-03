@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: {{ .Values.ingress.name }}-ingress-nginx
     app.kubernetes.io/part-of: nginx-ingress-maintainer
   annotations:
-    cert-manager.io/issuer: letsencrypt-nginx
+    cert-manager.io/issuer: {{ .Values.issuer.name }}
     {{- if .Values.ingress.whitelist.enabled -}}
     nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.ingress.whitelistSourceRange }}
     {{- end }}

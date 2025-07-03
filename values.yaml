@@ -9,7 +9,7 @@ ingress:
     targetService: ""
 
 issuer:
-  name: letsencrypt
+  name: ""
   namespace: ""
   email: ""
 
@@ -17,3 +17,5 @@ ingress-nginx:
   controller:
     ingressClassResource:
       name: ""
+
+doAccessToken: ""
