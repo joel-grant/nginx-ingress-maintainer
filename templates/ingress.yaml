@@ -30,3 +30,13 @@ spec:
             name: {{ .Values.ingress.domain.targetService }}
             port:
               number: 80
+  - host: www.{{ .Values.ingress.domain.name }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: {{ .Values.ingress.domain.targetService }}
+            port:
+              number: 80
