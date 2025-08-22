@@ -15,29 +15,6 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Add Kubeconfig
-        run: |
-          mkdir /home/runner/.kube
-          touch /home/runner/.kube/config
-          echo "${{ secrets.KUBECONFIG }}" > /home/runner/.kube/config
-      
-      # - name: Create Docker Registry Secret
-      #   run: |
-      #     kubectl get secret ${{ secrets.SECRET_NAME }}
-
-      #     if [ $? -eq 0 ]; then
-      #       echo "Secret ${{ secrets.SECRET_NAME }} already exists."
-      #       echo "No action needed"
-      #     else
-      #       echo "Secret ${{ secrets.SECRET_NAME }} does not exist."
-      #       echo "Creating secret ${{ secrets.SECRET_NAME }}."
-            
-      #       echo ${{ secrets.DOCKERHUB_CLUSTER_SECRET }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      #       kubectl create secret generic ${{ secrets.SECRET_NAME }} \
-      #       --from-file=.dockerconfigjson=/home/runner/.docker/config.json \
-      #       --type=kubernetes.io/dockerconfigjson
-      #     fi
-
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
@@ -83,16 +60,3 @@ jobs:
           
           echo "[INFO] Pushing Helm Package ${{ steps.package-chart.outputs.version }} to Cloudsmith."
           cloudsmith push helm $OWNER/$REPO_NAME /home/runner/work/$REPO_NAME/$REPO_NAME/$VERSION --republish -k ${{ secrets.CLOUDSMITH_API_KEY }}
-
-      - name: Save Helm Chart to GitHub Secrets
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          REPO_NAME=${GITHUB_REPOSITORY##*/}
-          REPO_NAME="${REPO_NAME//-/_}"
-          REPO_NAME=${REPO_NAME^^}
-          PACKAGE_URI="https://dl.cloudsmith.io/basic/$GITHUB_REPOSITORY/helm/charts/${{ steps.package-chart.outputs.version }}"
-          echo "[INFO] Setting the GitHub Org secret to the latest Helm Chart package: $PACKAGE_URI"
-          gh secret set "$REPO_NAME"_HELM_CHART --org ${{ github.repository_owner }} --visibility all --body "$PACKAGE_URI"
-          
-          echo "[INFO] Done!"
