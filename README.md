@@ -59,6 +59,51 @@ ingress-nginx:
       name: "my-app-nginx"
 ```
 
+### Subdomain Support
+
+This chart supports multiple ways to configure subdomains:
+
+#### Option 1: Simple Subdomains (Same Service)
+Point multiple subdomains to the same service as your main domain:
+
+```yaml
+ingress:
+  domain:
+    name: "example.com"
+    targetService: "my-app-service"
+    subdomains:
+      - "api"      # api.example.com -> my-app-service
+      - "admin"    # admin.example.com -> my-app-service
+      - "blog"     # blog.example.com -> my-app-service
+```
+
+#### Option 2: Advanced Subdomains (Different Services)
+Configure subdomains to point to different services with custom ports and paths:
+
+```yaml
+ingress:
+  domain:
+    name: "example.com"
+    targetService: "main-service"
+  hosts:
+    - host: "api.example.com"
+      service: "api-service"
+      port: 8080
+      paths:
+        - path: "/"
+          pathType: "Prefix"
+    - host: "admin.example.com"
+      service: "admin-dashboard"
+      port: 3000
+      paths:
+        - path: "/"
+          pathType: "Prefix"
+        - path: "/api"
+          pathType: "Prefix"
+```
+
+**Note**: All configured domains and subdomains will automatically be included in the TLS certificate.
+
 ### Optional Configuration
 
 ```yaml
