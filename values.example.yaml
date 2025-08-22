@@ -1,0 +1,61 @@
+# Example configuration with multiple hosts and configurable paths
+
+doAccessToken: "your-do-token"
+
+ingress:
+  name: "my-app"
+  namespace: "default"
+  whitelist:
+    enabled: false
+    whitelistSourceRange: ""
+  hosts:
+    # Main site - defaults to "/" path and "Prefix" pathType
+    - host: "joelgrant.dev"
+      service: "main-service"
+      port: 80
+    
+    # API with custom path
+    - host: "api.joelgrant.dev"
+      service: "api-service"
+      port: 8080
+      path: "/v1"
+      pathType: "Prefix"
+    
+    # Admin dashboard with exact path matching
+    - host: "admin.joelgrant.dev"
+      service: "admin-service"
+      port: 3000
+      path: "/dashboard"
+      pathType: "Exact"
+    
+    # Grafana monitoring
+    - host: "grafana.joelgrant.dev"
+      service: "grafana-service"
+      port: 3000
+      path: "/"
+      pathType: "Prefix"
+
+issuer:
+  name: "letsencrypt-prod"
+  namespace: "cert-manager"
+  email: "joelgrantdev@gmail.com"
+
+ingress-nginx:
+  controller:
+    ingressClassResource:
+      name: "my-app-nginx"
+    replicaCount: 1
+    service:
+      type: LoadBalancer
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: true
+        service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
+    config:
+      use-proxy-protocol: true
+    metrics:
+      enabled: true
+      service:
+        servicePort: "9090"
+    podAnnotations:
+      prometheus.io/port: "10254"
+      prometheus.io/scrape: "true"

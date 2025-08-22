@@ -6,18 +6,24 @@ ingress:
   whitelist:
     enabled: false
     whitelistSourceRange: ""
-  # Multiple host entries - each can have different services and ports
+  # Multiple host entries - each can have different services, ports, and paths
   hosts: []
     # Example:
     # - host: abc.com
     #   service: main-service
     #   port: 80
-    # - host: 123.abc.com
+    #   path: "/"              # Optional: defaults to "/"
+    #   pathType: "Prefix"     # Optional: defaults to "Prefix"
+    # - host: api.abc.com
     #   service: api-service
     #   port: 8080
-    # - host: admin.abd.com
+    #   path: "/v1"
+    #   pathType: "Prefix"
+    # - host: admin.abc.com
     #   service: admin-service
     #   port: 3000
+    #   path: "/dashboard"
+    #   pathType: "Exact"
 
 issuer:
   name: ""

@@ -26,8 +26,8 @@ spec:
   - host: {{ .host }}
     http:
       paths:
-      - pathType: Prefix
-        path: "/"
+      - pathType: {{ .pathType | default "Prefix" }}
+        path: {{ .path | default "/" | quote }}
         backend:
           service:
             name: {{ .service }}
