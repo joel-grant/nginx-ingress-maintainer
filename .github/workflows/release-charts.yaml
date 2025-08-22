@@ -55,7 +55,7 @@ jobs:
           echo "[INFO] Preparing the Cloudsmith CLI"
           pip install --user cloudsmith-cli
 
-          OWNER=${{ secrets.CLOUDSMITH_REPO_OWNER }}
+          OWNER=${{ secrets.CLOUDSMITH_REPOSITORY_OWNER }}
           OWNER=${OWNER,,}
           
           echo "[INFO] Pushing Helm Package ${{ steps.package-chart.outputs.version }} to Cloudsmith."
