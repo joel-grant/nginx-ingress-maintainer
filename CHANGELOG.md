@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/joel-grant/nginx-ingress-maintainer/compare/v1.1.1...v1.2.0) (2025-08-22)
+
+
+### Features
+
+* add tls and configuration for the www ([#27](https://github.com/joel-grant/nginx-ingress-maintainer/issues/27)) ([800f8e0](https://github.com/joel-grant/nginx-ingress-maintainer/commit/800f8e00157234759bfbaba02de2669f09e1bb8b))
+* allow multiple hosts per ingress config ([#31](https://github.com/joel-grant/nginx-ingress-maintainer/issues/31)) ([6fd0e55](https://github.com/joel-grant/nginx-ingress-maintainer/commit/6fd0e55d32b37b31e9319c86fb4dcdb7854a4233))
+
+
+### Bug Fixes
+
+* fix repo variable typo ([#33](https://github.com/joel-grant/nginx-ingress-maintainer/issues/33)) ([18b7a11](https://github.com/joel-grant/nginx-ingress-maintainer/commit/18b7a115d0b92932db22239a106674f0792c0772))
+
 ## [1.1.1](https://github.com/Plant-Coach/nginx-ingress-maintainer/compare/v1.1.0...v1.1.1) (2025-07-03)
 
 
