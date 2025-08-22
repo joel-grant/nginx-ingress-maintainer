@@ -17,26 +17,20 @@ spec:
   ingressClassName: {{ .Values.ingress.name }}-nginx
   tls:
    - hosts:
-     - {{ .Values.ingress.domain.name }}
+     {{- range .Values.ingress.hosts }}
+     - {{ .host }}
+     {{- end }}
      secretName: letsencrypt-nginx-{{ .Values.ingress.name }}-app
   rules:
-  - host: {{ .Values.ingress.domain.name }}
+  {{- range .Values.ingress.hosts }}
+  - host: {{ .host }}
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: {{ .Values.ingress.domain.targetService }}
+            name: {{ .service }}
             port:
-              number: 80
-  - host: www.{{ .Values.ingress.domain.name }}
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: {{ .Values.ingress.domain.targetService }}
-            port:
-              number: 80
+              number: {{ .port | default 80 }}
+  {{- end }}

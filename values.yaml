@@ -6,14 +6,23 @@ ingress:
   whitelist:
     enabled: false
     whitelistSourceRange: ""
-  domain:
-    name: ""
-    targetService: ""
+  # Multiple host entries - each can have different services and ports
+  hosts: []
+    # Example:
+    # - host: abc.com
+    #   service: main-service
+    #   port: 80
+    # - host: 123.abc.com
+    #   service: api-service
+    #   port: 8080
+    # - host: admin.abd.com
+    #   service: admin-service
+    #   port: 3000
 
 issuer:
   name: ""
   namespace: ""
-  email: joelgrantdev@gmail.com
+  email: ""
   
 ingress-nginx:
   controller:
