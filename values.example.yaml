@@ -20,20 +20,6 @@ ingress:
       port: 8080
       path: "/v1"
       pathType: "Prefix"
-    
-    # Admin dashboard with exact path matching
-    - host: "admin.sitename.com"
-      service: "admin-service"
-      port: 3000
-      path: "/dashboard"
-      pathType: "Exact"
-    
-    # Grafana monitoring
-    - host: "grafana.sitename.com"
-      service: "grafana-service"
-      port: 3000
-      path: "/"
-      pathType: "Prefix"
 
 issuer:
   name: "letsencrypt-prod"
