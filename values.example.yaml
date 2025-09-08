@@ -10,35 +10,21 @@ ingress:
     whitelistSourceRange: ""
   hosts:
     # Main site - defaults to "/" path and "Prefix" pathType
-    - host: "joelgrant.dev"
+    - host: "sitename.com"
       service: "main-service"
       port: 80
     
     # API with custom path
-    - host: "api.joelgrant.dev"
+    - host: "api.sitename.com"
       service: "api-service"
       port: 8080
       path: "/v1"
-      pathType: "Prefix"
-    
-    # Admin dashboard with exact path matching
-    - host: "admin.joelgrant.dev"
-      service: "admin-service"
-      port: 3000
-      path: "/dashboard"
-      pathType: "Exact"
-    
-    # Grafana monitoring
-    - host: "grafana.joelgrant.dev"
-      service: "grafana-service"
-      port: 3000
-      path: "/"
       pathType: "Prefix"
 
 issuer:
   name: "letsencrypt-prod"
   namespace: "cert-manager"
-  email: "joelgrantdev@gmail.com"
+  email: "email@something.com"
 
 ingress-nginx:
   controller:
