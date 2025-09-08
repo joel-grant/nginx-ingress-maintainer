@@ -15,7 +15,7 @@ ingress:
       port: 80
     
     # API with custom path
-    - host: "api.sitenane.com"
+    - host: "api.sitename.com"
       service: "api-service"
       port: 8080
       path: "/v1"
