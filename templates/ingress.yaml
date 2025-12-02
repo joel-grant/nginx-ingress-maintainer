@@ -8,8 +8,25 @@ metadata:
     app.kubernetes.io/part-of: nginx-ingress-maintainer
   annotations:
     cert-manager.io/issuer: {{ .Values.issuer.name }}
-    {{- if .Values.ingress.whitelist.enabled -}}
+    {{- if .Values.ingress.whitelist.enabled }}
     nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.ingress.whitelistSourceRange }}
+    {{- end }}
+    {{- if .Values.ingress.rateLimit.enabled }}
+    {{- if .Values.ingress.rateLimit.rps }}
+    nginx.ingress.kubernetes.io/limit-rps: "{{ .Values.ingress.rateLimit.rps }}"
+    {{- end }}
+    {{- if .Values.ingress.rateLimit.rpm }}
+    nginx.ingress.kubernetes.io/limit-rpm: "{{ .Values.ingress.rateLimit.rpm }}"
+    {{- end }}
+    {{- if .Values.ingress.rateLimit.connections }}
+    nginx.ingress.kubernetes.io/limit-connections: "{{ .Values.ingress.rateLimit.connections }}"
+    {{- end }}
+    {{- if .Values.ingress.rateLimit.burstMultiplier }}
+    nginx.ingress.kubernetes.io/limit-burst-multiplier: "{{ .Values.ingress.rateLimit.burstMultiplier }}"
+    {{- end }}
+    {{- if .Values.ingress.rateLimit.whitelist }}
+    nginx.ingress.kubernetes.io/limit-whitelist: "{{ .Values.ingress.rateLimit.whitelist }}"
+    {{- end }}
     {{- end }}
 spec:
   # Ingress resources need to have the ingressClassName field set to 

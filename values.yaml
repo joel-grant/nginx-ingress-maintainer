@@ -6,6 +6,20 @@ ingress:
   whitelist:
     enabled: false
     whitelistSourceRange: ""
+  rateLimit:
+    enabled: false
+    # Requests per second per IP (use either rps OR rpm, not both)
+    rps: 10
+    # Requests per minute per IP (alternative to rps)
+    # rpm: 600
+    # Maximum concurrent connections per IP
+    connections: 5
+    # Burst multiplier (default: 5) - burst = rps * burstMultiplier
+    burstMultiplier: 5
+    # IP ranges to exclude from rate limiting (CIDR format)
+    # whitelist: ""
+    # Note: Response status codes (429 vs 503) can only be customized globally
+    # via the ingress-nginx controller ConfigMap (see configMap section below)
   # Multiple host entries - each can have different services, ports, and paths
   hosts: []
     # Example:
@@ -46,6 +60,12 @@ ingress-nginx:
           service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
     config:
       use-proxy-protocol: true
+      # Global rate limiting response customization
+      # Change rate limit HTTP status code from 503 to 429
+      limit-req-status-code: "429"
+      limit-conn-status-code: "429"
+      # Other global nginx settings can be added here
+      # See: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
 
     ## Enable the metrics of the NGINX Ingress controller https://kubernetes.github.io/ingress-nginx/user-guide/monitoring/
     metrics:

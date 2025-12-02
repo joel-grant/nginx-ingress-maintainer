@@ -1,15 +1,19 @@
 # nginx-ingress-maintainer
 
-Welcome! This is a demo project showcasing a Helm chart that automates the deployment of NGINX Ingress Controller with automatic TLS certificate management for Kubernetes applications. 
+This is a demo/practice project showcasing a Helm chart that automates the deployment of NGINX Ingress Controller with automatic TLS certificate management, rate limiting, and flexible host configuration for Kubernetes applications. 
 
-While this started as a demo, I actively use this chart to manage ingress and TLS for my own deployed projects. If you'd like to try it out for your own applications, keep reading - there are detailed instructions below!
+While this started as a demo/practice project, I have continued to use it for projects as I grow in the field of infrastructure automation and software engineering.
 
-## Overview
+With that said... **Use at Your Own Risk** :D
+
+## Here's what I've set up so far...
 
 This chart simplifies the process of exposing services in Kubernetes by providing:
 - **NGINX Ingress Controller** - Load balancing and HTTP/HTTPS routing
 - **Automatic TLS certificates** - Let's Encrypt integration via cert-manager
 - **DNS-based validation** - Using DNS01 challenge with DigitalOcean
+- **Rate limiting** - Configurable per-ingress traffic controls with custom responses
+- **Multiple host support** - Flexible subdomain and multi-service routing
 - **High availability** - Configurable replica count and monitoring
 
 ## Prerequisites
@@ -103,6 +107,34 @@ ingress:
 ```
 
 **Note**: All configured domains and subdomains will automatically be included in the TLS certificate.
+
+### Rate Limiting
+
+Protect your services from abuse with configurable rate limiting:
+
+```yaml
+ingress:
+  rateLimit:
+    enabled: true
+    rps: 20                    # 20 requests per second per IP
+    connections: 10            # Max 10 concurrent connections per IP
+    burstMultiplier: 5         # Allow bursts up to rps * 5
+    whitelist: "10.0.0.0/8"    # Exclude internal IPs
+
+# Global response customization (affects all ingresses)
+ingress-nginx:
+  controller:
+    config:
+      limit-req-status-code: "429"  # HTTP 429 instead of 503
+      limit-conn-status-code: "429"
+```
+
+**Features:**
+- Per-IP rate limiting (requests per second or per minute)
+- Connection limits with burst handling
+- IP whitelisting for trusted sources
+- Customizable HTTP response codes (429, 503, etc.)
+- Applied per ingress with global response settings
 
 ### Optional Configuration
 
