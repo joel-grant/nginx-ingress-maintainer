@@ -17,7 +17,7 @@ ingress:
     # Burst multiplier (default: 5) - burst = rps * burstMultiplier
     burstMultiplier: 5
     # IP ranges to exclude from rate limiting (CIDR format)
-    # whitelist: "10.0.0.0/24,172.16.0.0/16"
+    # whitelist: ""
     # Note: Response status codes (429 vs 503) can only be customized globally
     # via the ingress-nginx controller ConfigMap (see configMap section below)
   # Multiple host entries - each can have different services, ports, and paths
