@@ -13,13 +13,14 @@ ingress:
     # Allow 20 requests per second per IP
     rps: 20
     # Allow maximum 10 concurrent connections per IP
-    # connections: 10
+    connections: 10
     # Burst multiplier - allows bursts up to rps * burstMultiplier
     burstMultiplier: 5
     # Exclude internal networks from rate limiting
-    # whitelist: ""
+    whitelist: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
     # Alternative: Use rpm instead of rps for longer time windows
     # rpm: 1200
+  # Note: Rate limit response codes are customized in the ingress-nginx config below
   hosts:
     # Main site - defaults to "/" path and "Prefix" pathType
     - host: "sitename.com"
@@ -50,6 +51,12 @@ ingress-nginx:
         service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
     config:
       use-proxy-protocol: true
+      # Global rate limiting response customization (affects ALL ingresses)
+      limit-req-status-code: "429"  # HTTP 429 "Too Many Requests"
+      limit-conn-status-code: "429" # HTTP 429 for connection limits
+      # Other global nginx settings:
+      # server-tokens: "false"       # Hide nginx version
+      # ssl-protocols: "TLSv1.2 TLSv1.3"  # Allowed SSL protocols
     metrics:
       enabled: true
       service:
