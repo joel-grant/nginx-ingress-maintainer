@@ -15,7 +15,7 @@ ingress:
     # Allow maximum 10 concurrent connections per IP
     # connections: 10
     # Burst multiplier - allows bursts up to rps * burstMultiplier
-    # burstMultiplier: 5
+    burstMultiplier: 5
     # Exclude internal networks from rate limiting
     # whitelist: ""
     # Alternative: Use rpm instead of rps for longer time windows
