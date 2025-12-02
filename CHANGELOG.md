@@ -1,5 +1,46 @@
 # Changelog
 
+## [2.0.0](https://github.com/joel-grant/nginx-ingress-maintainer/compare/v1.7.0...v2.0.0) (2025-12-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* add capability of validating multiple certificates within the cluster
+
+### Features
+
+* add capability of validating multiple certificates within the cluster ([193739c](https://github.com/joel-grant/nginx-ingress-maintainer/commit/193739c3d1ac61a7466bad46cc6adc2ffe1f4a84))
+* add namespaced setup ([9e8ae58](https://github.com/joel-grant/nginx-ingress-maintainer/commit/9e8ae5832c68dfd05ca325bd9833d7bb12bfeac8))
+* add nginx rate-limiting features ([69b12e9](https://github.com/joel-grant/nginx-ingress-maintainer/commit/69b12e9215aed416c88f7b39565e82b02c5c2c34))
+* add pipelines ([c62eddb](https://github.com/joel-grant/nginx-ingress-maintainer/commit/c62eddb23c88d48cfde44efdc21d9b39d5829009))
+* add tls and configuration for the www ([#27](https://github.com/joel-grant/nginx-ingress-maintainer/issues/27)) ([800f8e0](https://github.com/joel-grant/nginx-ingress-maintainer/commit/800f8e00157234759bfbaba02de2669f09e1bb8b))
+* allow multiple hosts per ingress config ([#31](https://github.com/joel-grant/nginx-ingress-maintainer/issues/31)) ([6fd0e55](https://github.com/joel-grant/nginx-ingress-maintainer/commit/6fd0e55d32b37b31e9319c86fb4dcdb7854a4233))
+* allow multiple nginx controllers per cluster ([c66cafa](https://github.com/joel-grant/nginx-ingress-maintainer/commit/c66cafad12dd4b026a161ca780617c3c7ea02220))
+* allow multiple nginx ingresses in same cluster ([f426ea0](https://github.com/joel-grant/nginx-ingress-maintainer/commit/f426ea0fb8a8d1b59d68e618a60932a874b6ac94))
+* allow multiple NGINX installations in different namespaces ([6a5f3bd](https://github.com/joel-grant/nginx-ingress-maintainer/commit/6a5f3bdf362b39f6d42025da9d977f24eb353e79))
+* automate helm publishing ([815b1c2](https://github.com/joel-grant/nginx-ingress-maintainer/commit/815b1c218555b89858a73dcda4899b306fccc95a))
+* consolidate nginx config into this repo ([#18](https://github.com/joel-grant/nginx-ingress-maintainer/issues/18)) ([3f868e2](https://github.com/joel-grant/nginx-ingress-maintainer/commit/3f868e21fd2b803d0765def28e0ca3b8a58f250c))
+* new chart format for reusability ([8ab4cdd](https://github.com/joel-grant/nginx-ingress-maintainer/commit/8ab4cddb109d914d83428758b42a9325941f1dd6))
+* reformat and use namespaces ([2cd9ca4](https://github.com/joel-grant/nginx-ingress-maintainer/commit/2cd9ca4021733584fca749d417e17ef41243115e))
+
+
+### Bug Fixes
+
+* add missing period ([9a3d29b](https://github.com/joel-grant/nginx-ingress-maintainer/commit/9a3d29ba3d4b8289f488deae1f9fe1a34e1c59f3))
+* bump version again ([#22](https://github.com/joel-grant/nginx-ingress-maintainer/issues/22)) ([72891c2](https://github.com/joel-grant/nginx-ingress-maintainer/commit/72891c2aed971f552e4255c49e54cff99c2fe723))
+* conditional formatting ([8b0bcbb](https://github.com/joel-grant/nginx-ingress-maintainer/commit/8b0bcbb8a801c8635dd93ba73b24f2179eac402c))
+* fix repo variable typo ([#33](https://github.com/joel-grant/nginx-ingress-maintainer/issues/33)) ([18b7a11](https://github.com/joel-grant/nginx-ingress-maintainer/commit/18b7a115d0b92932db22239a106674f0792c0772))
+* missing secret name ([f4ff57d](https://github.com/joel-grant/nginx-ingress-maintainer/commit/f4ff57db9fd792c3f9af002ffd6ea320a45d8131))
+* move secret back ([#23](https://github.com/joel-grant/nginx-ingress-maintainer/issues/23)) ([8048489](https://github.com/joel-grant/nginx-ingress-maintainer/commit/80484890b7927600d1bc074133e9e235311e49a3))
+* move secret config to parent repo ([3e43ef5](https://github.com/joel-grant/nginx-ingress-maintainer/commit/3e43ef5974eb831f831ecbe442bd3e94fd3879ac))
+* remove extra curly brace ([60afc78](https://github.com/joel-grant/nginx-ingress-maintainer/commit/60afc78c91e1d962f13e77f661f470a7928ec9bc))
+* remove looping templates ([02033f8](https://github.com/joel-grant/nginx-ingress-maintainer/commit/02033f8de9c3884068a55f023ad212ac5ada4b3e))
+* remove old range loop ([c1558a8](https://github.com/joel-grant/nginx-ingress-maintainer/commit/c1558a86ce0421d7dcb897a8fafd2e4dc84a55bd))
+* reset valueds ([321e690](https://github.com/joel-grant/nginx-ingress-maintainer/commit/321e69068356721a6c3467b570836264eb567b7d))
+* reset values ([c6556c0](https://github.com/joel-grant/nginx-ingress-maintainer/commit/c6556c0610ba1c97785e6412f45ee9dd4a34009f))
+* uncomment secret creation ci job for now ([c229120](https://github.com/joel-grant/nginx-ingress-maintainer/commit/c22912063181d6b991b9c02e8fac54b9497f4a7b))
+* uncomment secret job for now ([faf4d13](https://github.com/joel-grant/nginx-ingress-maintainer/commit/faf4d1339cf57c99fb7169d26911fe7669c8e4c6))
+
 ## [1.2.0](https://github.com/joel-grant/nginx-ingress-maintainer/compare/v1.1.1...v1.2.0) (2025-08-22)
 
 
