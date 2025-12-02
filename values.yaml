@@ -6,6 +6,18 @@ ingress:
   whitelist:
     enabled: false
     whitelistSourceRange: ""
+  rateLimit:
+    enabled: false
+    # Requests per second per IP (use either rps OR rpm, not both)
+    rps: 10
+    # Requests per minute per IP (alternative to rps)
+    # rpm: 600
+    # Maximum concurrent connections per IP
+    connections: 5
+    # Burst multiplier (default: 5) - burst = rps * burstMultiplier
+    # burstMultiplier: 5
+    # IP ranges to exclude from rate limiting (CIDR format)
+    # whitelist: "10.0.0.0/24,172.16.0.0/16"
   # Multiple host entries - each can have different services, ports, and paths
   hosts: []
     # Example:
